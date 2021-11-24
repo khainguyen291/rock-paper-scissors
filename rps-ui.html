@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script-ui.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Rock, Paper, Scissors</title>
+</head>
+
+<body>
+    <div id="header">
+        <h1 id="title">Rock, Paper, Scissors</h1>
+        <h2 id="title-hook">Choose your weapon. First to five wins!</h2>
+    </div>
+
+    <div id="choices">
+        <!--Program these buttons to use the playRound function-->
+        <button id="rock">
+            <img src="rock.jpg" alt="An image of a rock in Mickey Mouse style.">
+        </button>
+        <button id="paper">
+            <img src="paper.jpg" alt="An image of paper in Mickey Mouse style.">
+        </button>
+        <button id="scissors">
+            <img src="scissors.jpg" alt="An image of scissors in Mickey Mouse style.">
+        </button>
+    </div>
+
+    <div id="stats">
+        <div id="your-stat">
+            <div class="subtext" id="your-choice">
+                You chose:
+            </div>
+            <div class="subtext" id="your-image">
+                <img src="rock.jpg" alt="An image of a rock in Mickey Mouse style.">
+            </div>
+        </div>
+
+        <div id="computer-stat"> 
+            <div class="subtext" id="computer-choice">
+                Computer chose:
+            </div>
+            <div class="subtext" id="computer-image"> 
+                <img src="rock.jpg" alt="An image of a rock in Mickey Mouse style.">
+            </div>
+        </div>
+
+        <div id="score">
+            <div class="subtext" id="your-score">
+                Player: 2
+            </div>
+            <div class="subtext" id="computer-score">
+                Computer: 1
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
