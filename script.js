@@ -1,107 +1,145 @@
-// playRound()
+let yourScore = document.querySelector('#your-score');
+let computerScore = document.querySelector('#computer-score');
+let yourImage = document.querySelector('#your-image');
+let computerImage = document.querySelector('#computer-image');
 
-function playRound() {
+let player = 0;
+let computer = 0;
 
-    //Randomized choice between RPS for computer
+//Runs game on-click
+let rock = document.querySelector('#rock');
+rock.addEventListener('click', playerRock);
+
+let paper = document.querySelector('#paper');
+paper.addEventListener('click', playerPaper)
+
+let scissors = document.querySelector('#scissors');
+scissors.addEventListener('click', playerScissors)
+
+//Computer Random Choice
+function computerPlay() {
     let choices = Array("rock", "paper", "scissors");
-    function computerPlay() {
-        return choices[Math.floor(Math.random() * 3)];
-    }
+    return choices[Math.floor(Math.random() * 3)];
+}
 
-    //Computer and Player's Choice, converted to all lowercase
-    let computerInput = computerPlay();
-    let computerSelection = computerInput.toLowerCase();
+//Display Player Choice
+function yourRock() {
+    document.getElementById('your-image').innerHTML='';
+    let rockImage = document.createElement("img");
+    rockImage.src = "images/rock.jpg";
+    yourImage.appendChild(rockImage);
+}
 
+function yourPaper() {
+    document.getElementById('your-image').innerHTML='';
+    let paperImage = document.createElement("img");
+    paperImage.src = "images/paper.jpg";
+    yourImage.appendChild(paperImage);  
+}
 
-    let playerInput = prompt("Rock, Paper, or Scissors?", "")
-    let playerSelection = playerInput.toLowerCase();
+function yourScissors() {
+    document.getElementById('your-image').innerHTML='';
+    let scissorsImage = document.createElement("img");
+    scissorsImage.src = "images/scissors.jpg";
+    yourImage.appendChild(scissorsImage)
+}
 
-    //Outcomes
-    if (playerSelection === computerSelection) {
-        return "It's a tie"
-    }
-    //If player selected Scissors
-    else if (playerSelection === "scissors" && computerSelection === "rock") {
-        return "You lost. You selected scissors and the computer selected rock."
-    }
-    else if (playerSelection === "scissors" && computerSelection === "paper") {
-        return "You won. You selected scissors and the computer selected paper."
-    }
+//Display Computer Choice
+function computerRock() {
+    document.getElementById('computer-image').innerHTML='';
+    let rockImage = document.createElement("img");
+    rockImage.src = "images/rock.jpg";
+    computerImage.appendChild(rockImage);
+}
 
-    //If player selected ROCK
-    else if (playerSelection === "rock" && computerSelection === "paper") {
-        return "You lost. You selected rock and the computer selected paper."
-    }
-    else if (playerSelection === "rock" && computerSelection === "scissors") {
-        return "You won. You selected rock and the computer selected scissors."
-    }
-    //If player selected PAPER
-    else if (playerSelection === "paper" && computerSelection === "scissors") {
-        return "You lost. You selected paper and the computer selected scissors."
-    }
-    else if (playerSelection === "paper" && computerSelection === "rock") {
-        return "You won. You selected paper and the computer selected rock."
-    }
+function computerPaper() {
+    document.getElementById('computer-image').innerHTML='';
+    let paperImage = document.createElement("img");
+    paperImage.src = "images/paper.jpg";
+    computerImage.appendChild(paperImage);
+}
 
-    //For Wrong Input
-
-    else {
-        return "Incorrect input. Please try again."
-    }
-
-
+function computerScissors() {
+    document.getElementById('computer-image').innerHTML='';
+    let scissorsImage = document.createElement("img");
+    scissorsImage.src = "images/scissors.jpg";
+    computerImage.appendChild(scissorsImage)
 }
 
 
+//Update Score
+function scoreUpdate() {
+    yourScore.textContent = player;
+    computerScore.textContent = computer;
 
-//New Code
-function playRound() {
-
-    //Randomized choice between RPS for computer
-    let choices = Array("rock", "paper", "scissors");
-    function computerPlay() {
-        return choices[Math.floor(Math.random() * 3)];
+    if (player == 5) {
+        alert("You win. Please refresh to play again")
     }
-
-    //Computer and Player's Choice, converted to all lowercase
-    let computerInput = computerPlay();
-    let computerSelection = computerInput.toLowerCase();
-
-
-    let playerSelection = playerInput.toLowerCase();
-
-    //Outcomes
-    if (playerSelection === computerSelection) {
-        return "It's a tie"
+    else if (computer == 5) {
+        alert("You lost. Please refresh to play again.")
     }
-    //If player selected Scissors
-    else if (playerSelection === "scissors" && computerSelection === "rock") {
-        return "You lost. You selected scissors and the computer selected rock."
-    }
-    else if (playerSelection === "scissors" && computerSelection === "paper") {
-        return "You won. You selected scissors and the computer selected paper."
-    }
+}
+//The Game's Algorithm
+function playerRock() {
+    computerPlay();
+    let computerSelection = computerPlay();
+    let playerSelection = "rock";
 
-    //If player selected ROCK
-    else if (playerSelection === "rock" && computerSelection === "paper") {
-        return "You lost. You selected rock and the computer selected paper."
+    if (playerSelection === "rock" && computerSelection === "paper") {
+        computer++;
+        yourRock();
+        computerPaper();
     }
     else if (playerSelection === "rock" && computerSelection === "scissors") {
-        return "You won. You selected rock and the computer selected scissors."
+        player++;
+        yourRock();
+        computerScissors();
     }
-    //If player selected PAPER
-    else if (playerSelection === "paper" && computerSelection === "scissors") {
-        return "You lost. You selected paper and the computer selected scissors."
+    else {
+        yourRock();
+        computerRock();
+    }
+    scoreUpdate();
+}
+function playerPaper() {
+    computerPlay();
+    let computerSelection = computerPlay();
+    let playerSelection = "paper";
+
+    if (playerSelection === "paper" && computerSelection === "scissors") {
+        computer++;
+        yourPaper();
+        computerScissors()
     }
     else if (playerSelection === "paper" && computerSelection === "rock") {
-        return "You won. You selected paper and the computer selected rock."
+        player++;
+        yourPaper();
+        computerRock();
     }
-
-    //For Wrong Input
-
     else {
-        return "Incorrect input. Please try again."
+        yourPaper();
+        computerPaper();
     }
-
-
+    scoreUpdate();
 }
+function playerScissors() {
+    computerPlay();
+    let computerSelection = computerPlay();
+    let playerSelection = "scissors";
+    if (playerSelection === "scissors" && computerSelection === "rock") {
+        computer++;
+        yourScissors();
+        computerRock();
+    }
+    else if (playerSelection === "scissors" && computerSelection === "paper") {
+        player++;
+        yourScissors();
+        computerRock();
+    }
+    else {
+        yourScissors();
+        computerRock();
+    }
+    scoreUpdate();
+}
+

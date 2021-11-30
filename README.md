@@ -1,1 +1,1 @@
-Hello guys, this is a repository for my Rock Paper Scissors game that I will be creating as apart of my journey on The Odin Project!
+Hello guys, this 'Rock Paper Scissors' game was created as apart of my interactive UI lessson on The Odin Project. I did attempt to add some extra interactivities beyond the requirement to challenge myself a little more.
